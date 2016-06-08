@@ -9,9 +9,14 @@
 import Foundation
 import UIKit
 
+protocol SlideButtonDelegate{
+    func buttonStatus(Status:String)
+}
+
 @IBDesignable class MMSlidingButton: UIView{
     
-
+    var delegate: SlideButtonDelegate?
+    
     @IBInspectable var dragPointWidth: CGFloat = 70 {
         didSet{
             setStyle()
@@ -69,7 +74,7 @@ import UIKit
     var buttonLabel          = UILabel()
     var dragPointButtonLabel = UILabel()
     var imageView            = UIImageView()
-    var locked               = false
+    var unlocked             = false
     var layoutSet            = false
     
     override init (frame : CGRect) {
@@ -126,7 +131,6 @@ import UIKit
             self.dragPointButtonLabel.textColor     = self.dragPointTextColor
             self.dragPoint.addSubview(self.dragPointButtonLabel)
         }
-        
         self.bringSubviewToFront(self.dragPoint)
         
         if self.imageName != UIImage(){
@@ -155,8 +159,8 @@ import UIKit
             if finalX < 0{
                 finalX = 0
             }else if finalX + self.dragPointWidth  >  (self.frame.size.width - 60){
-                locked = true
-                self.lockPoint()
+                unlocked = true
+                self.unlock()
             }
             
             let animationDuration:Double = abs(Double(velocityX) * 0.0002) + 0.2
@@ -170,13 +174,13 @@ import UIKit
     }
     
     func animationFinished(){
-        if !locked{
-            self.resetPoint()
+        if !unlocked{
+            self.reset()
         }
     }
     
     //lock button animation (SUCCESS)
-    func lockPoint(){
+    func unlock(){
         UIView.transitionWithView(self, duration: 0.2, options: .CurveEaseOut, animations: {
             self.dragPoint.frame = CGRectMake(self.frame.size.width - self.dragPoint.frame.size.width, 0, self.dragPoint.frame.size.width, self.dragPoint.frame.size.height)
         }) { (Status) in
@@ -185,13 +189,13 @@ import UIKit
                 self.imageView.hidden               = true
                 self.dragPoint.backgroundColor      = self.buttonUnlockedColor
                 self.dragPointButtonLabel.textColor = self.buttonUnlockedTextColor
+                self.delegate?.buttonStatus("Unlocked")
             }
         }
     }
     
     //reset button animation (RESET)
-    func resetPoint(){
-        self.locked = false
+    func reset(){
         UIView.transitionWithView(self, duration: 0.2, options: .CurveEaseOut, animations: {
             self.dragPoint.frame = CGRectMake(self.dragPointWidth - self.frame.size.width, 0, self.dragPoint.frame.size.width, self.dragPoint.frame.size.height)
         }) { (Status) in
@@ -200,8 +204,9 @@ import UIKit
                 self.imageView.hidden               = false
                 self.dragPoint.backgroundColor      = self.dragPointColor
                 self.dragPointButtonLabel.textColor = self.dragPointTextColor
+                self.unlocked                       = false
+                //self.delegate?.buttonStatus("Locked")
             }
         }
     }
-
 }

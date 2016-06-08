@@ -13,7 +13,7 @@
 		B86D37B11D07CCA600FD6D3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86D37AA1D07CCA600FD6D3D /* Main.storyboard */; };
 		B86D37B21D07CCA600FD6D3D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B86D37AC1D07CCA600FD6D3D /* Info.plist */; };
 		B86D37B31D07CCA600FD6D3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86D37AD1D07CCA600FD6D3D /* ViewController.swift */; };
-		B86D37B61D07CCAB00FD6D3D /* MMSlidingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86D37B51D07CCAB00FD6D3D /* MMSlidingButton.swift */; };
+		B86D37B91D07DF8700FD6D3D /* MMSlidingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86D37B81D07DF8700FD6D3D /* MMSlidingButton.swift */; };
 		B8904B171D066D3B0006BA69 /* MMSlidingButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8904B161D066D3B0006BA69 /* MMSlidingButtonTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +34,7 @@
 		B86D37AB1D07CCA600FD6D3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B86D37AC1D07CCA600FD6D3D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B86D37AD1D07CCA600FD6D3D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B86D37B51D07CCAB00FD6D3D /* MMSlidingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMSlidingButton.swift; sourceTree = "<group>"; };
+		B86D37B81D07DF8700FD6D3D /* MMSlidingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMSlidingButton.swift; sourceTree = "<group>"; };
 		B8904AFE1D066D3B0006BA69 /* MMSlidingButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMSlidingButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8904B121D066D3B0006BA69 /* MMSlidingButtonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MMSlidingButtonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8904B161D066D3B0006BA69 /* MMSlidingButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSlidingButtonTests.swift; sourceTree = "<group>"; };
@@ -72,21 +72,20 @@
 			path = Example;
 			sourceTree = "<group>";
 		};
-		B86D37B41D07CCAB00FD6D3D /* MMSlidingButton */ = {
+		B86D37B71D07DF8700FD6D3D /* MMSlidingButton */ = {
 			isa = PBXGroup;
 			children = (
-				B86D37B51D07CCAB00FD6D3D /* MMSlidingButton.swift */,
+				B86D37B81D07DF8700FD6D3D /* MMSlidingButton.swift */,
 			);
-			name = MMSlidingButton;
-			path = Example/MMSlidingButton;
+			path = MMSlidingButton;
 			sourceTree = "<group>";
 		};
 		B8904AF51D066D3B0006BA69 = {
 			isa = PBXGroup;
 			children = (
 				B86D37A51D07CCA600FD6D3D /* Example */,
-				B86D37B41D07CCAB00FD6D3D /* MMSlidingButton */,
 				B8904B151D066D3B0006BA69 /* MMSlidingButtonTests */,
+				B86D37B71D07DF8700FD6D3D /* MMSlidingButton */,
 				B8904AFF1D066D3B0006BA69 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -212,7 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B86D37B31D07CCA600FD6D3D /* ViewController.swift in Sources */,
-				B86D37B61D07CCAB00FD6D3D /* MMSlidingButton.swift in Sources */,
+				B86D37B91D07DF8700FD6D3D /* MMSlidingButton.swift in Sources */,
 				B86D37AE1D07CCA600FD6D3D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
