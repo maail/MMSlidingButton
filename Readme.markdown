@@ -4,8 +4,6 @@
 
 Setup a slide to unlock button in storyboard.
 
-Compatible with iOS 8.0 and above. Released under the [MIT license](LICENSE).
-
 ## Example
 
 Open up the included Xcode project for an example app.
