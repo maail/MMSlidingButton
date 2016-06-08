@@ -13,7 +13,7 @@ See example.
 
 Open up the included Xcode project for an example app.
 
-![image alt text](http://thirdgene.com/MMTools/MMSlidingButton/Video/sliding_button.mov)
+![image alt text](http://thirdgene.com/mmtools/mmslidingbutton/screens/example.gif)
 
 
 ## Installation
