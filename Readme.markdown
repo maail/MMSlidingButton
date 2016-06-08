@@ -4,9 +4,9 @@
 
 Setup a slide to unlock button in storyboard.
 
-## Example
+## Installation
 
-Open up the included Xcode project for an example app.
+Simply add the files MMSlidingButton.swift to your project.
 
 ## Usage
 
@@ -18,9 +18,9 @@ Modify the values in Attributes Inspector to style the button.
 
 ![image alt text](http://thirdgene.com/mmtools/mmslidingbutton/screens/2.png)
 
-## Installation
+## Example
 
-Simply add the files MMSlidingButton.swift to your project.
+Open up the included Xcode project for an example app.
 
 ## License
 
