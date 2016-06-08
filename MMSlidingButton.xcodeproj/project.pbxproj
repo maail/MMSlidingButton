@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B8904B021D066D3B0006BA69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8904B011D066D3B0006BA69 /* AppDelegate.swift */; };
-		B8904B041D066D3B0006BA69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8904B031D066D3B0006BA69 /* ViewController.swift */; };
-		B8904B071D066D3B0006BA69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8904B051D066D3B0006BA69 /* Main.storyboard */; };
-		B8904B091D066D3B0006BA69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8904B081D066D3B0006BA69 /* Assets.xcassets */; };
-		B8904B0C1D066D3B0006BA69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8904B0A1D066D3B0006BA69 /* LaunchScreen.storyboard */; };
+		B86D37AE1D07CCA600FD6D3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86D37A61D07CCA600FD6D3D /* AppDelegate.swift */; };
+		B86D37AF1D07CCA600FD6D3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B86D37A71D07CCA600FD6D3D /* Assets.xcassets */; };
+		B86D37B01D07CCA600FD6D3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86D37A81D07CCA600FD6D3D /* LaunchScreen.storyboard */; };
+		B86D37B11D07CCA600FD6D3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86D37AA1D07CCA600FD6D3D /* Main.storyboard */; };
+		B86D37B21D07CCA600FD6D3D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B86D37AC1D07CCA600FD6D3D /* Info.plist */; };
+		B86D37B31D07CCA600FD6D3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86D37AD1D07CCA600FD6D3D /* ViewController.swift */; };
+		B86D37B61D07CCAB00FD6D3D /* MMSlidingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86D37B51D07CCAB00FD6D3D /* MMSlidingButton.swift */; };
 		B8904B171D066D3B0006BA69 /* MMSlidingButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8904B161D066D3B0006BA69 /* MMSlidingButtonTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,13 +28,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B86D37A61D07CCA600FD6D3D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B86D37A71D07CCA600FD6D3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B86D37A91D07CCA600FD6D3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B86D37AB1D07CCA600FD6D3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B86D37AC1D07CCA600FD6D3D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B86D37AD1D07CCA600FD6D3D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B86D37B51D07CCAB00FD6D3D /* MMSlidingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMSlidingButton.swift; sourceTree = "<group>"; };
 		B8904AFE1D066D3B0006BA69 /* MMSlidingButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMSlidingButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8904B011D066D3B0006BA69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B8904B031D066D3B0006BA69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B8904B061D066D3B0006BA69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B8904B081D066D3B0006BA69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B8904B0B1D066D3B0006BA69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B8904B0D1D066D3B0006BA69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8904B121D066D3B0006BA69 /* MMSlidingButtonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MMSlidingButtonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8904B161D066D3B0006BA69 /* MMSlidingButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSlidingButtonTests.swift; sourceTree = "<group>"; };
 		B8904B181D066D3B0006BA69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,10 +59,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B86D37A51D07CCA600FD6D3D /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				B86D37A61D07CCA600FD6D3D /* AppDelegate.swift */,
+				B86D37A71D07CCA600FD6D3D /* Assets.xcassets */,
+				B86D37A81D07CCA600FD6D3D /* LaunchScreen.storyboard */,
+				B86D37AA1D07CCA600FD6D3D /* Main.storyboard */,
+				B86D37AC1D07CCA600FD6D3D /* Info.plist */,
+				B86D37AD1D07CCA600FD6D3D /* ViewController.swift */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		B86D37B41D07CCAB00FD6D3D /* MMSlidingButton */ = {
+			isa = PBXGroup;
+			children = (
+				B86D37B51D07CCAB00FD6D3D /* MMSlidingButton.swift */,
+			);
+			name = MMSlidingButton;
+			path = Example/MMSlidingButton;
+			sourceTree = "<group>";
+		};
 		B8904AF51D066D3B0006BA69 = {
 			isa = PBXGroup;
 			children = (
-				B8904B001D066D3B0006BA69 /* MMSlidingButton */,
+				B86D37A51D07CCA600FD6D3D /* Example */,
+				B86D37B41D07CCAB00FD6D3D /* MMSlidingButton */,
 				B8904B151D066D3B0006BA69 /* MMSlidingButtonTests */,
 				B8904AFF1D066D3B0006BA69 /* Products */,
 			);
@@ -72,19 +98,6 @@
 				B8904B121D066D3B0006BA69 /* MMSlidingButtonTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B8904B001D066D3B0006BA69 /* MMSlidingButton */ = {
-			isa = PBXGroup;
-			children = (
-				B8904B011D066D3B0006BA69 /* AppDelegate.swift */,
-				B8904B031D066D3B0006BA69 /* ViewController.swift */,
-				B8904B051D066D3B0006BA69 /* Main.storyboard */,
-				B8904B081D066D3B0006BA69 /* Assets.xcassets */,
-				B8904B0A1D066D3B0006BA69 /* LaunchScreen.storyboard */,
-				B8904B0D1D066D3B0006BA69 /* Info.plist */,
-			);
-			path = MMSlidingButton;
 			sourceTree = "<group>";
 		};
 		B8904B151D066D3B0006BA69 /* MMSlidingButtonTests */ = {
@@ -177,9 +190,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8904B0C1D066D3B0006BA69 /* LaunchScreen.storyboard in Resources */,
-				B8904B091D066D3B0006BA69 /* Assets.xcassets in Resources */,
-				B8904B071D066D3B0006BA69 /* Main.storyboard in Resources */,
+				B86D37B21D07CCA600FD6D3D /* Info.plist in Resources */,
+				B86D37B11D07CCA600FD6D3D /* Main.storyboard in Resources */,
+				B86D37AF1D07CCA600FD6D3D /* Assets.xcassets in Resources */,
+				B86D37B01D07CCA600FD6D3D /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,8 +211,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8904B041D066D3B0006BA69 /* ViewController.swift in Sources */,
-				B8904B021D066D3B0006BA69 /* AppDelegate.swift in Sources */,
+				B86D37B31D07CCA600FD6D3D /* ViewController.swift in Sources */,
+				B86D37B61D07CCAB00FD6D3D /* MMSlidingButton.swift in Sources */,
+				B86D37AE1D07CCA600FD6D3D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,20 +236,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B8904B051D066D3B0006BA69 /* Main.storyboard */ = {
+		B86D37A81D07CCA600FD6D3D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B8904B061D066D3B0006BA69 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B8904B0A1D066D3B0006BA69 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B8904B0B1D066D3B0006BA69 /* Base */,
+				B86D37A91D07CCA600FD6D3D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B86D37AA1D07CCA600FD6D3D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B86D37AB1D07CCA600FD6D3D /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -329,7 +344,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = MMSlidingButton/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thirdgene.MMSlidingButton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -340,7 +356,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = MMSlidingButton/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thirdgene.MMSlidingButton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -390,6 +407,7 @@
 				B8904B1D1D066D3B0006BA69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B8904B1E1D066D3B0006BA69 /* Build configuration list for PBXNativeTarget "MMSlidingButtonTests" */ = {
 			isa = XCConfigurationList;
@@ -398,6 +416,7 @@
 				B8904B201D066D3B0006BA69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
