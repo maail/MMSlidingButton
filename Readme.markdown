@@ -1,21 +1,48 @@
 # MMSlidingButton
 
+![image alt text](http://thirdgene.com/mmtools/mmslidingbutton/screens/example.gif)
+
 Setup a slide to unlock button in storyboard.
-
-Compatible with iOS 8.0 and above. Released under the [MIT license](LICENSE).
-
-
-## Usage
-
-See example.
 
 ## Example
 
-![Screenshot](http://soff.me/WetB/Screenshot.png) ![Screenshot](http://soff.me/Wg7G/Screenshot2.png)
-
 Open up the included Xcode project for an example app.
 
+## Usage
+
+Add a UIView to Storyboard. Set constraints. Make the UIView a class of MMSlidingButton.
+
+![image alt text](http://thirdgene.com/mmtools/mmslidingbutton/screens/1.png)
+
+Modify the values in Attributes Inspector to style the button.
+
+![image alt text](http://thirdgene.com/mmtools/mmslidingbutton/screens/2.png)
 
 ## Installation
 
 Simply add the files MMSlidingButton.swift to your project.
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2016 
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
