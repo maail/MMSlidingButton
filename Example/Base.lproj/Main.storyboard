@@ -31,21 +31,9 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATF-LU-Vxw" customClass="MMSlidingButton" customModule="MMSlidingButton" customModuleProvider="target">
                                 <rect key="frame" x="20" y="149" width="560" height="61"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itV-UD-vLI">
-                                        <rect key="frame" x="0.0" y="0.0" width="73" height="61"/>
-                                        <color key="backgroundColor" red="0.27602013945579529" green="0.51160401105880737" blue="0.62497025728225708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="61" id="7R2-t9-e5T"/>
-                                            <constraint firstAttribute="width" constant="73" id="oTs-mp-eh3"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
                                 <color key="backgroundColor" red="0.29833909869194031" green="0.85856080055236816" blue="0.81532305479049683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="B6h-7D-U93"/>
-                                    <constraint firstItem="itV-UD-vLI" firstAttribute="leading" secondItem="ATF-LU-Vxw" secondAttribute="leading" id="Szh-EC-qry"/>
-                                    <constraint firstItem="itV-UD-vLI" firstAttribute="top" secondItem="ATF-LU-Vxw" secondAttribute="top" id="T9A-lG-o3x"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="dragPointWidth">
@@ -73,11 +61,6 @@
                                         <color key="value" red="0.71372549019607845" green="0.792156862745098" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="itV-UD-vLI"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -90,8 +73,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dragPoint" destination="itV-UD-vLI" id="22S-sj-PSb"/>
-                        <outlet property="fullView" destination="ATF-LU-Vxw" id="RU2-a9-SPV"/>
+                        <outlet property="button" destination="ATF-LU-Vxw" id="52d-Qs-6Ts"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
