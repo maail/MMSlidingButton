@@ -65,6 +65,12 @@ protocol SlideButtonDelegate{
         }
     }
     
+    @IBInspectable var buttonCornerRadius: CGFloat = 30 {
+        didSet{
+            setStyle()
+        }
+    }
+    
     @IBInspectable var buttonUnlockedText: String   = "UNLOCKED"
     @IBInspectable var buttonUnlockedColor: UIColor = UIColor.blackColor()
     var buttonFont                                  = UIFont.boldSystemFontOfSize(17)
@@ -102,15 +108,18 @@ protocol SlideButtonDelegate{
         self.imageView.image                = imageName
         self.buttonLabel.textColor          = self.buttonTextColor
         self.dragPointButtonLabel.textColor = self.dragPointTextColor
+        
+        self.dragPoint.layer.cornerRadius   = buttonCornerRadius
+        self.layer.cornerRadius             = buttonCornerRadius
     }
     
     func setUpButton(){
         
         self.backgroundColor              = self.buttonColor
-
+        
         self.dragPoint                    = UIView(frame: CGRectMake(dragPointWidth - self.frame.size.width, 0, self.frame.size.width, self.frame.size.height))
         self.dragPoint.backgroundColor    = dragPointColor
-        self.dragPoint.layer.cornerRadius = 30
+        self.dragPoint.layer.cornerRadius = buttonCornerRadius
         self.addSubview(self.dragPoint)
         
         if !self.buttonText.isEmpty{
@@ -165,10 +174,10 @@ protocol SlideButtonDelegate{
             
             let animationDuration:Double = abs(Double(velocityX) * 0.0002) + 0.2
             UIView.transitionWithView(self, duration: animationDuration, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-             }, completion: { (Status) in
-                if Status{
-                    self.animationFinished()
-                }
+                }, completion: { (Status) in
+                    if Status{
+                        self.animationFinished()
+                    }
             })
         }
     }
