@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol SlideButtonDelegate{
-    func buttonStatus(Status:String)
+    func buttonStatus(status:String, sender:MMSlidingButton)
 }
 
 @IBDesignable class MMSlidingButton: UIView{
@@ -198,7 +198,7 @@ protocol SlideButtonDelegate{
                 self.imageView.hidden               = true
                 self.dragPoint.backgroundColor      = self.buttonUnlockedColor
                 self.dragPointButtonLabel.textColor = self.buttonUnlockedTextColor
-                self.delegate?.buttonStatus("Unlocked")
+                self.delegate?.buttonStatus("Unlocked", sender: self)
             }
         }
     }
