@@ -97,6 +97,47 @@ protocol SlideButtonDelegate{
             self.setUpButton()
             self.layoutSet = true
         }
+        else {
+            let dragPointWidthDifference=(self.frame.size.width-self.dragPoint.frame.size.width);
+            
+            func fixWidths() {
+                for (_, view) in [self.dragPoint, self.dragPointButtonLabel].enumerated() {
+                    view.frame.size.width=view.frame.size.width + dragPointWidthDifference;
+                    
+                }
+                
+            }
+            
+            func fixOffsets() {
+                self.dragPoint.frame.origin.x=self.dragPoint.frame.origin.x - dragPointWidthDifference;
+                self.imageView.frame.origin.x=self.imageView.frame.origin.x + dragPointWidthDifference;
+                
+            }
+            ////
+            
+            let widthsBeforeOffsets=(dragPointWidthDifference>=0);
+            
+            if (widthsBeforeOffsets) {
+                fixWidths();
+                
+            } else {
+                fixOffsets();
+                
+            }
+            
+            DispatchQueue.main.async {
+                if (widthsBeforeOffsets) {
+                    fixOffsets();
+                    
+                } else {
+                    fixWidths();
+                    
+                }
+                
+            }
+            
+        }
+        
     }
     
     func setStyle(){
@@ -118,6 +159,8 @@ protocol SlideButtonDelegate{
         self.backgroundColor              = self.buttonColor
         
         self.dragPoint                    = UIView(frame: CGRect(x: dragPointWidth - self.frame.size.width, y: 0, width: self.frame.size.width, height: self.frame.size.height))
+        self.dragPoint.autoresizingMask=[UIViewAutoresizing.flexibleHeight]
+        
         self.dragPoint.backgroundColor    = dragPointColor
         self.dragPoint.layer.cornerRadius = buttonCornerRadius
         self.addSubview(self.dragPoint)
@@ -125,6 +168,8 @@ protocol SlideButtonDelegate{
         if !self.buttonText.isEmpty{
             
             self.buttonLabel               = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
+            self.buttonLabel.autoresizingMask=[UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+            
             self.buttonLabel.textAlignment = .center
             self.buttonLabel.text          = buttonText
             self.buttonLabel.textColor     = UIColor.white
@@ -144,6 +189,8 @@ protocol SlideButtonDelegate{
         
         if self.imageName != UIImage(){
             self.imageView = UIImageView(frame: CGRect(x: self.frame.size.width - dragPointWidth, y: 0, width: self.dragPointWidth, height: self.frame.size.height))
+            self.imageView.autoresizingMask=[UIViewAutoresizing.flexibleHeight]
+            
             self.imageView.contentMode = .center
             self.imageView.image = self.imageName
             self.dragPoint.addSubview(self.imageView)
