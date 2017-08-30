@@ -45,6 +45,12 @@ import UIKit
         }
     }
     
+    @IBInspectable var offsetButtonTextByDragPointWidth: Bool = false {
+        didSet{
+            setStyle()
+        }
+    }
+    
     @IBInspectable var imageName: UIImage = UIImage() {
         didSet{
             setStyle()
@@ -187,8 +193,16 @@ import UIKit
         self.addSubview(self.dragPoint)
         
         if !self.buttonText.isEmpty{
+            var dragPointX : CGFloat = 0;
             
-            self.buttonLabel               = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
+            if offsetButtonTextByDragPointWidth
+            {
+                dragPointX=dragPointWidth;
+                
+            }
+            ////
+            
+            self.buttonLabel               = UILabel(frame: CGRect(x: dragPointX, y: 0, width: self.frame.size.width - dragPointWidth, height: self.frame.size.height))
             self.buttonLabel.autoresizingMask=[UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
             
             self.buttonLabel.textAlignment = .center
