@@ -224,7 +224,7 @@ protocol SlideButtonDelegate{
     func panDetected(sender: UIPanGestureRecognizer){
         var translatedPoint = sender.translation(in: self)
         translatedPoint     = CGPoint(x: translatedPoint.x, y: self.frame.size.height / 2)
-        sender.view?.frame.origin.x = max(dragPointWidth - self.frame.size.width, (dragPointWidth - self.frame.size.width) + translatedPoint.x);
+        sender.view?.frame.origin.x = min(0, max(dragPointWidth - self.frame.size.width, (dragPointWidth - self.frame.size.width) + translatedPoint.x));
         if sender.state == .ended{
             
             let velocityX = sender.velocity(in: self).x * 0.2
