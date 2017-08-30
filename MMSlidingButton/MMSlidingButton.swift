@@ -13,7 +13,7 @@ protocol SlideButtonDelegate{
     func buttonStatus(status:String, sender:MMSlidingButton)
 }
 
-@IBDesignable class MMSlidingButton: UIView{
+@objc @IBDesignable class MMSlidingButton: UIView{
     
     var delegate: SlideButtonDelegate?
     
