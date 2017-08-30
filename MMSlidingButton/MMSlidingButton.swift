@@ -83,6 +83,8 @@ protocol SlideButtonDelegate{
     var unlocked             = false
     var layoutSet            = false
     
+    private var panGestureRecognizer : UIPanGestureRecognizer?
+    
     override init (frame : CGRect) {
         super.init(frame : frame)
     }
@@ -99,6 +101,16 @@ protocol SlideButtonDelegate{
         }
         else {
             let dragPointWidthDifference=(self.frame.size.width-self.dragPoint.frame.size.width);
+            
+            if (panGestureRecognizer?.state == UIGestureRecognizerState.began || panGestureRecognizer?.state == UIGestureRecognizerState.changed) {
+                panGestureRecognizer?.isEnabled=false // NOTE: This is to cancel any current gesture during a rotation/resize.
+                panGestureRecognizer?.isEnabled=true
+                ////
+                
+                self.dragPoint.frame.origin.x=dragPointDefaultOriginX() + dragPointWidthDifference;
+                
+            }
+            ////
             
             func fixWidths() {
                 for (_, view) in [self.dragPoint, self.dragPointButtonLabel].enumerated() {
@@ -154,11 +166,16 @@ protocol SlideButtonDelegate{
         self.layer.cornerRadius             = buttonCornerRadius
     }
     
+    func dragPointDefaultOriginX() -> CGFloat {
+        return dragPointWidth - self.frame.size.width;
+        
+    }
+    
     func setUpButton(){
         
         self.backgroundColor              = self.buttonColor
         
-        self.dragPoint                    = UIView(frame: CGRect(x: dragPointWidth - self.frame.size.width, y: 0, width: self.frame.size.width, height: self.frame.size.height))
+        self.dragPoint                    = UIView(frame: CGRect(x: dragPointDefaultOriginX(), y: 0, width: self.frame.size.width, height: self.frame.size.height))
         self.dragPoint.autoresizingMask=[UIViewAutoresizing.flexibleHeight]
         
         self.dragPoint.backgroundColor    = dragPointColor
@@ -199,9 +216,9 @@ protocol SlideButtonDelegate{
         self.layer.masksToBounds = true
         
         // start detecting pan gesture
-        let panGestureRecognizer                    = UIPanGestureRecognizer(target: self, action: #selector(self.panDetected(sender:)))
-        panGestureRecognizer.minimumNumberOfTouches = 1
-        self.dragPoint.addGestureRecognizer(panGestureRecognizer)
+        panGestureRecognizer=UIPanGestureRecognizer(target: self, action: #selector(self.panDetected(sender:)))
+        panGestureRecognizer!.minimumNumberOfTouches = 1
+        self.dragPoint.addGestureRecognizer(panGestureRecognizer!)
     }
     
     func panDetected(sender: UIPanGestureRecognizer){
