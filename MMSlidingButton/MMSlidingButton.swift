@@ -19,7 +19,7 @@ import UIKit
 
 @objc @IBDesignable class MMSlidingButton: UIView{
     
-    var delegate: SlideButtonDelegate?
+    weak var delegate: SlideButtonDelegate?
     
     @IBInspectable var dragPointWidth: CGFloat = 70 {
         didSet{
