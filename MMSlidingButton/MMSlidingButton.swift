@@ -10,7 +10,11 @@ import Foundation
 import UIKit
 
 @objc protocol SlideButtonDelegate{
+    @available(*, unavailable, message: "Update to \"unlocked()\" delegate method")
     func buttonStatus(status:String, sender:MMSlidingButton)
+    
+    func unlocked(slidingButton: MMSlidingButton)
+    
 }
 
 @objc @IBDesignable class MMSlidingButton: UIView{
@@ -262,7 +266,7 @@ import UIKit
                 self.imageView.isHidden               = true
                 self.dragPoint.backgroundColor      = self.buttonUnlockedColor
                 self.dragPointButtonLabel.textColor = self.buttonUnlockedTextColor
-                self.delegate?.buttonStatus(status: "Unlocked", sender: self)
+                self.delegate?.unlocked(slidingButton: self)
             }
         }
     }
@@ -278,7 +282,6 @@ import UIKit
                 self.dragPoint.backgroundColor      = self.dragPointColor
                 self.dragPointButtonLabel.textColor = self.dragPointTextColor
                 self.unlocked                       = false
-                //self.delegate?.buttonStatus("Locked")
             }
         }
     }
