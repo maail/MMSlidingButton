@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol SlideButtonDelegate{
+@objc protocol SlideButtonDelegate{
     func buttonStatus(status:String, sender:MMSlidingButton)
 }
 
