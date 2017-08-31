@@ -15,6 +15,9 @@ import UIKit
     
     func unlocked(slidingButton: MMSlidingButton)
     
+    @objc optional func didEnterUnlockRegion(slidingButton: MMSlidingButton)
+    @objc optional func didExitUnlockRegion(slidingButton: MMSlidingButton)
+    
 }
 
 @objc @IBDesignable class MMSlidingButton: UIView{
@@ -87,13 +90,15 @@ import UIKit
     
     @IBInspectable var optionalButtonUnlockingText: String   = ""
     
+    private(set) var dragPoint            = UIView()
+    private(set) var buttonLabel          = UILabel()
+    private(set) var dragPointButtonLabel = UILabel()
+    private(set) var imageView            = UIImageView()
+    private(set) var unlocked             = false
+    private var layoutSet            = false
     
-    var dragPoint            = UIView()
-    var buttonLabel          = UILabel()
-    var dragPointButtonLabel = UILabel()
-    var imageView            = UIImageView()
-    var unlocked             = false
-    var layoutSet            = false
+    private var isInsideUnlockRegion = false
+    private var dispatchCounterFor_isInsideUnlockRegionDidChange : UInt16 = 0
     
     private var panGestureRecognizer : UIPanGestureRecognizer?
     
@@ -256,24 +261,35 @@ import UIKit
         var translatedPoint = sender.translation(in: self)
         translatedPoint     = CGPoint(x: translatedPoint.x, y: self.frame.size.height / 2)
         sender.view?.frame.origin.x = min(0, max(dragPointWidth - self.frame.size.width, (dragPointWidth - self.frame.size.width) + translatedPoint.x));
-        if sender.state == .ended{
+        ////
+        
+        let velocityX=(sender.velocity(in: self).x * 0.2)
+        
+        let wasInsideUnlockRegion=isInsideUnlockRegion
+        isInsideUnlockRegion=(((translatedPoint.x + velocityX) + self.dragPointWidth) > (self.frame.size.width - 60))
+        
+        if (wasInsideUnlockRegion != isInsideUnlockRegion) {
+            isInsideUnlockRegionDidChange(newValue: isInsideUnlockRegion)
             
-            let velocityX = sender.velocity(in: self).x * 0.2
-            var finalX    = translatedPoint.x + velocityX
-            if finalX < 0{
-                finalX = 0
-            }else if finalX + self.dragPointWidth  >  (self.frame.size.width - 60){
+        }
+        ////
+        
+        if (sender.state == .ended) {
+            if (isInsideUnlockRegion) {
                 unlocked = true
                 self.unlock()
+                
             }
+            ////
             
-            let animationDuration:Double = abs(Double(velocityX) * 0.0002) + 0.2
-            UIView.transition(with: self, duration: animationDuration, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            UIView.transition(with: self, duration: abs(Double(velocityX) * 0.0002) + 0.2, options: UIViewAnimationOptions.curveEaseOut, animations: {
                 }, completion: { (Status) in
-                    if Status{
+                    if Status {
                         self.animationFinished()
                     }
-            })
+                    
+            } )
+            
         }
     }
     
@@ -281,6 +297,29 @@ import UIKit
         if !unlocked{
             self.reset()
         }
+    }
+    
+    private func isInsideUnlockRegionDidChange(newValue : Bool) {
+        dispatchCounterFor_isInsideUnlockRegionDidChange += 1
+        let localCopyOf_dispatchCounterFor_isInsideUnlockRegionDidChange = dispatchCounterFor_isInsideUnlockRegionDidChange
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { // NOTE: This is meant to "debounce" the slide threshold.
+            if (localCopyOf_dispatchCounterFor_isInsideUnlockRegionDidChange != self.dispatchCounterFor_isInsideUnlockRegionDidChange) {
+                return
+                
+            }
+            ////
+            
+            if (newValue) {
+                self.delegate?.didEnterUnlockRegion?(slidingButton: self)
+                
+            } else {
+                self.delegate?.didExitUnlockRegion?(slidingButton: self)
+                
+            }
+            
+        }
+        
     }
     
     //lock button animation (SUCCESS)
@@ -300,6 +339,14 @@ import UIKit
     
     //reset button animation (RESET)
     func reset(){
+        if (isInsideUnlockRegion) {
+            isInsideUnlockRegion=false
+            ////
+            
+            isInsideUnlockRegionDidChange(newValue: false);
+            
+        }
+        
         UIView.transition(with: self, duration: 0.2, options: .curveEaseOut, animations: {
             self.dragPoint.frame = CGRect(x: self.dragPointWidth - self.frame.size.width, y: 0, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
         }) { (Status) in
