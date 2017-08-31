@@ -85,6 +85,8 @@ import UIKit
     @IBInspectable var buttonUnlockedColor: UIColor = UIColor.black
     var buttonFont                                  = UIFont.boldSystemFont(ofSize: 17)
     
+    @IBInspectable var optionalButtonUnlockingText: String   = ""
+    
     
     var dragPoint            = UIView()
     var buttonLabel          = UILabel()
@@ -162,9 +164,20 @@ import UIKit
         
     }
     
+    private func dragPointButtonText() -> String {
+        if (optionalButtonUnlockingText.count > 0) {
+            return optionalButtonUnlockingText
+            
+        } else {
+            return buttonText
+            
+        }
+        
+    }
+    
     func setStyle(){
         self.buttonLabel.text               = self.buttonText
-        self.dragPointButtonLabel.text      = self.buttonText
+        self.dragPointButtonLabel.text      = dragPointButtonText()
         self.dragPoint.frame.size.width     = self.dragPointWidth
         self.dragPoint.backgroundColor      = self.dragPointColor
         self.backgroundColor                = self.buttonColor
@@ -214,7 +227,7 @@ import UIKit
             
             self.dragPointButtonLabel               = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
             self.dragPointButtonLabel.textAlignment = .center
-            self.dragPointButtonLabel.text          = buttonText
+            self.dragPointButtonLabel.text          = dragPointButtonText()
             self.dragPointButtonLabel.textColor     = UIColor.white
             self.dragPointButtonLabel.font          = self.buttonFont
             self.dragPointButtonLabel.textColor     = self.dragPointTextColor
@@ -291,7 +304,7 @@ import UIKit
             self.dragPoint.frame = CGRect(x: self.dragPointWidth - self.frame.size.width, y: 0, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
         }) { (Status) in
             if Status{
-                self.dragPointButtonLabel.text      = self.buttonText
+                self.dragPointButtonLabel.text      = self.dragPointButtonText()
                 self.imageView.isHidden               = false
                 self.dragPoint.backgroundColor      = self.dragPointColor
                 self.dragPointButtonLabel.textColor = self.dragPointTextColor
