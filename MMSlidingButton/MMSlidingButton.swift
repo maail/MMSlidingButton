@@ -230,8 +230,7 @@ import UIKit
             self.buttonLabel.textColor     = self.buttonTextColor
             self.addSubview(self.buttonLabel)
             
-            self.dragPointButtonLabel               = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
-            self.dragPointButtonLabel.textAlignment = .center
+            self.dragPointButtonLabel               = UILabel(frame: CGRect(x: dragPointWidth, y: 0, width: self.frame.size.width - (dragPointWidth * 2), height: self.frame.size.height))
             self.dragPointButtonLabel.text          = dragPointButtonText()
             self.dragPointButtonLabel.textColor     = UIColor.white
             self.dragPointButtonLabel.font          = self.buttonFont
