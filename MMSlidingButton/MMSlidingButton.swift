@@ -227,7 +227,7 @@ import UIKit
             
             var dragPointButtonLabelTextAlignment = NSTextAlignment.center
             
-            if (alignDragPointTextRight) {
+            if (!unlocked && alignDragPointTextRight) {
                 dragPointButtonLabelTextAlignment = .right
                 
             }
@@ -276,20 +276,26 @@ import UIKit
         sender.view?.frame.origin.x = min(0, max(dragPointWidth - self.frame.size.width, (dragPointWidth - self.frame.size.width) + translatedPoint.x));
         ////
         
+        let wasInsideUnlockRegion=isInsideUnlockRegion
         let velocityX=(sender.velocity(in: self).x * 0.2)
         
-        let wasInsideUnlockRegion=isInsideUnlockRegion
-        isInsideUnlockRegion=(((translatedPoint.x + velocityX) + self.dragPointWidth) > (self.frame.size.width - 60))
-        
-        if (wasInsideUnlockRegion != isInsideUnlockRegion) {
-            isInsideUnlockRegionDidChange(newValue: isInsideUnlockRegion)
+        func didCrossThresholdPointX(includingVelocity: Bool) -> Bool {
+            var velocityXToUse=velocityX;
+            
+            if (!includingVelocity) {
+                velocityXToUse=0
+                
+            }
+            
+            return (((translatedPoint.x + velocityXToUse) + self.dragPointWidth) > (self.frame.size.width - 60));
             
         }
-        ////
         
         if (sender.state == .ended) {
+            isInsideUnlockRegion=didCrossThresholdPointX(includingVelocity: true)
+            
             if (isInsideUnlockRegion) {
-                unlocked = true
+                unlocked=true
                 self.unlock()
                 
             }
@@ -303,7 +309,17 @@ import UIKit
                     
             } )
             
+        } else {
+            isInsideUnlockRegion=didCrossThresholdPointX(includingVelocity: false)
+            
         }
+        ////
+        
+        if (wasInsideUnlockRegion != isInsideUnlockRegion) {
+            isInsideUnlockRegionDidChange(newValue: isInsideUnlockRegion)
+            
+        }
+        
     }
     
     func animationFinished(){
