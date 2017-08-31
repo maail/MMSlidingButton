@@ -71,6 +71,11 @@ import UIKit
             setStyle()
         }
     }
+    @IBInspectable var alignDragPointTextRight: Bool = false {
+        didSet{
+            setStyle()
+        }
+    }
     
     @IBInspectable var buttonUnlockedTextColor: UIColor = UIColor.white {
         didSet{
@@ -220,6 +225,14 @@ import UIKit
             }
             ////
             
+            var dragPointButtonLabelTextAlignment = NSTextAlignment.center
+            
+            if (alignDragPointTextRight) {
+                dragPointButtonLabelTextAlignment = .right
+                
+            }
+            ////
+            
             self.buttonLabel               = UILabel(frame: CGRect(x: dragPointX, y: 0, width: self.frame.size.width - dragPointWidth, height: self.frame.size.height))
             self.buttonLabel.autoresizingMask=[UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
             
@@ -231,6 +244,7 @@ import UIKit
             self.addSubview(self.buttonLabel)
             
             self.dragPointButtonLabel               = UILabel(frame: CGRect(x: dragPointWidth, y: 0, width: self.frame.size.width - (dragPointWidth * 2), height: self.frame.size.height))
+            self.dragPointButtonLabel.textAlignment = dragPointButtonLabelTextAlignment
             self.dragPointButtonLabel.text          = dragPointButtonText()
             self.dragPointButtonLabel.textColor     = UIColor.white
             self.dragPointButtonLabel.font          = self.buttonFont
@@ -330,6 +344,7 @@ import UIKit
                 self.dragPointButtonLabel.text      = self.buttonUnlockedText
                 self.imageView.isHidden               = true
                 self.dragPoint.backgroundColor      = self.buttonUnlockedColor
+                self.dragPointButtonLabel.textAlignment = .center // NOTE: Ensures this is reset if "alignDragPointTextRight" is `true`
                 self.dragPointButtonLabel.textColor = self.buttonUnlockedTextColor
                 self.delegate?.unlocked(slidingButton: self)
             }
