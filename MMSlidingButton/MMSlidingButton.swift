@@ -20,87 +20,87 @@ import UIKit
     
 }
 
-@objc @IBDesignable class MMSlidingButton: UIView{
+@IBDesignable class MMSlidingButton: UIView{
     
-    weak var delegate: SlideButtonDelegate?
+    @objc weak var delegate: SlideButtonDelegate?
     
-    @IBInspectable var dragPointWidth: CGFloat = 70 {
+    @objc @IBInspectable var dragPointWidth: CGFloat = 70 {
         didSet{
             setStyle()
         }
     }
     
-    @IBInspectable var dragPointColor: UIColor = UIColor.darkGray {
+    @objc @IBInspectable var dragPointColor: UIColor = UIColor.darkGray {
         didSet{
             setStyle()
         }
     }
     
-    @IBInspectable var buttonColor: UIColor = UIColor.gray {
+    @objc @IBInspectable var buttonColor: UIColor = UIColor.gray {
         didSet{
             setStyle()
         }
     }
     
-    @IBInspectable var buttonText: String = "UNLOCK" {
+    @objc @IBInspectable var buttonText: String = "UNLOCK" {
         didSet{
             setStyle()
         }
     }
     
-    @IBInspectable var offsetButtonTextByDragPointWidth: Bool = false {
+    @objc @IBInspectable var offsetButtonTextByDragPointWidth: Bool = false {
         didSet{
             setStyle()
         }
     }
     
-    @IBInspectable var imageName: UIImage = UIImage() {
+    @objc @IBInspectable var imageName: UIImage = UIImage() {
         didSet{
             setStyle()
         }
     }
     
-    @IBInspectable var buttonTextColor: UIColor = UIColor.white {
+    @objc @IBInspectable var buttonTextColor: UIColor = UIColor.white {
         didSet{
             setStyle()
         }
     }
     
-    @IBInspectable var dragPointTextColor: UIColor = UIColor.white {
+    @objc @IBInspectable var dragPointTextColor: UIColor = UIColor.white {
         didSet{
             setStyle()
         }
     }
-    @IBInspectable var alignDragPointTextRight: Bool = false {
-        didSet{
-            setStyle()
-        }
-    }
-    
-    @IBInspectable var buttonUnlockedTextColor: UIColor = UIColor.white {
+    @objc @IBInspectable var alignDragPointTextRight: Bool = false {
         didSet{
             setStyle()
         }
     }
     
-    @IBInspectable var buttonCornerRadius: CGFloat = 30 {
+    @objc @IBInspectable var buttonUnlockedTextColor: UIColor = UIColor.white {
         didSet{
             setStyle()
         }
     }
     
-    @IBInspectable var buttonUnlockedText: String   = "UNLOCKED"
-    @IBInspectable var buttonUnlockedColor: UIColor = UIColor.black
-    var buttonFont                                  = UIFont.boldSystemFont(ofSize: 17)
+    @objc @IBInspectable var buttonCornerRadius: CGFloat = 30 {
+        didSet{
+            setStyle()
+        }
+    }
     
-    @IBInspectable var optionalButtonUnlockingText: String   = ""
+    @objc @IBInspectable var buttonUnlockedText: String   = "UNLOCKED"
+    @objc @IBInspectable var buttonUnlockedColor: UIColor = UIColor.black
+    @objc var buttonFont                                  = UIFont.boldSystemFont(ofSize: 17)
     
-    private(set) var dragPoint            = UIView()
-    private(set) var buttonLabel          = UILabel()
-    private(set) var dragPointButtonLabel = UILabel()
-    private(set) var imageView            = UIImageView()
-    private(set) var unlocked             = false
-    private var layoutSet            = false
+    @objc @IBInspectable var optionalButtonUnlockingText: String   = ""
+    
+    @objc private(set) var dragPoint            = UIView()
+    @objc private(set) var buttonLabel          = UILabel()
+    @objc private(set) var dragPointButtonLabel = UILabel()
+    @objc private(set) var imageView            = UIImageView()
+    @objc private(set) var unlocked             = false
+    @objc private var layoutSet            = false
     
     private var isInsideUnlockRegion = false
     private var dispatchCounterFor_isInsideUnlockRegionDidChange : UInt16 = 0
@@ -199,12 +199,12 @@ import UIKit
         self.layer.cornerRadius             = buttonCornerRadius
     }
     
-    func dragPointDefaultOriginX() -> CGFloat {
+    fileprivate func dragPointDefaultOriginX() -> CGFloat {
         return dragPointWidth - self.frame.size.width;
         
     }
     
-    func setUpButton(){
+    fileprivate func setUpButton(){
         
         self.backgroundColor              = self.buttonColor
         
@@ -270,7 +270,7 @@ import UIKit
         self.dragPoint.addGestureRecognizer(panGestureRecognizer!)
     }
     
-    func panDetected(sender: UIPanGestureRecognizer){
+    @objc func panDetected(sender: UIPanGestureRecognizer){
         var translatedPoint = sender.translation(in: self)
         translatedPoint     = CGPoint(x: translatedPoint.x, y: self.frame.size.height / 2)
         sender.view?.frame.origin.x = min(0, max(dragPointWidth - self.frame.size.width, (dragPointWidth - self.frame.size.width) + translatedPoint.x));
@@ -322,13 +322,13 @@ import UIKit
         
     }
     
-    func animationFinished(){
+    fileprivate func animationFinished(){
         if !unlocked{
             self.reset()
         }
     }
     
-    private func isInsideUnlockRegionDidChange(newValue : Bool) {
+    fileprivate func isInsideUnlockRegionDidChange(newValue : Bool) {
         dispatchCounterFor_isInsideUnlockRegionDidChange += 1
         let localCopyOf_dispatchCounterFor_isInsideUnlockRegionDidChange = dispatchCounterFor_isInsideUnlockRegionDidChange
         
@@ -368,7 +368,7 @@ import UIKit
     }
     
     //reset button animation (RESET)
-    func reset(){
+    @objc func reset(){
         if (isInsideUnlockRegion) {
             isInsideUnlockRegion=false
             ////
