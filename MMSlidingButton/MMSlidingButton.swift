@@ -204,6 +204,18 @@ import UIKit
         
     }
     
+    fileprivate func dragPointButtonLabelTextAlignment() -> NSTextAlignment {
+        var textAlignment = NSTextAlignment.center
+        
+        if (!unlocked && alignDragPointTextRight) {
+            textAlignment = .right
+            
+        }
+        
+        return textAlignment
+        
+    }
+    
     fileprivate func setUpButton(){
         
         self.backgroundColor              = self.buttonColor
@@ -225,14 +237,6 @@ import UIKit
             }
             ////
             
-            var dragPointButtonLabelTextAlignment = NSTextAlignment.center
-            
-            if (!unlocked && alignDragPointTextRight) {
-                dragPointButtonLabelTextAlignment = .right
-                
-            }
-            ////
-            
             self.buttonLabel               = UILabel(frame: CGRect(x: dragPointX, y: 0, width: self.frame.size.width - dragPointWidth, height: self.frame.size.height))
             self.buttonLabel.autoresizingMask=[UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
             
@@ -249,7 +253,7 @@ import UIKit
             
             self.dragPointButtonLabel.adjustsFontSizeToFitWidth=true
             self.dragPointButtonLabel.minimumScaleFactor=0.6
-            self.dragPointButtonLabel.textAlignment = dragPointButtonLabelTextAlignment
+            self.dragPointButtonLabel.textAlignment = dragPointButtonLabelTextAlignment()
             self.dragPointButtonLabel.text          = dragPointButtonText()
             self.dragPointButtonLabel.textColor     = UIColor.white
             self.dragPointButtonLabel.font          = self.buttonFont
@@ -391,6 +395,9 @@ import UIKit
                 self.dragPoint.backgroundColor      = self.dragPointColor
                 self.dragPointButtonLabel.textColor = self.dragPointTextColor
                 self.unlocked                       = false
+                ////
+                
+                self.dragPointButtonLabel.textAlignment = self.dragPointButtonLabelTextAlignment() // NOTE: Ensures this is reset if "alignDragPointTextRight" is `true`, but must be done after "unlocked" is reset to `false`.
             }
         }
     }
