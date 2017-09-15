@@ -321,7 +321,7 @@ import UIKit
     @objc func panDetected(sender: UIPanGestureRecognizer){
         var translatedPoint = sender.translation(in: self)
         translatedPoint     = CGPoint(x: translatedPoint.x, y: self.frame.size.height / 2)
-        sender.view?.frame.origin.x = min(0, max(dragPointWidth - self.frame.size.width, (dragPointWidth - self.frame.size.width) + translatedPoint.x));
+        sender.view?.frame.origin.x = min(0, max(dragPointDefaultOriginX(), dragPointDefaultOriginX()+translatedPoint.x));
         ////
         
         let wasInsideUnlockRegion=isInsideUnlockRegion
@@ -426,7 +426,7 @@ import UIKit
         }
         
         UIView.transition(with: self, duration: 0.2, options: .curveEaseOut, animations: {
-            self.dragPoint.frame = CGRect(x: self.dragPointWidth - self.frame.size.width, y: 0, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
+            self.dragPoint.frame = CGRect(x: self.dragPointDefaultOriginX(), y: 0, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
         }) { (Status) in
             if Status{
                 self.dragPointButtonLabel.text      = self.dragPointButtonText()
