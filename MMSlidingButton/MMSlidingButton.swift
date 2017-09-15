@@ -47,6 +47,33 @@ import UIKit
             setStyle()
         }
     }
+    @objc @IBInspectable var buttonAttributedText: NSAttributedString? = nil {
+        didSet{
+            if (buttonAttributedText != nil)
+            {
+                let buttonText_new=buttonAttributedText!.string
+                ////
+                
+                if (buttonText_new.count==0) {
+                    buttonAttributedText=nil
+                    
+                } else if (buttonText != buttonText_new) {
+                    buttonText=buttonText_new
+                    
+                } else {
+                    setStyle()
+                    
+                }
+                
+            }
+            else
+            {
+                buttonText=""
+                
+            }
+            
+        }
+    }
     
     @objc @IBInspectable var offsetButtonTextByDragPointWidth: Bool = false {
         didSet{
@@ -185,14 +212,28 @@ import UIKit
         
     }
     
+    private func configureButtonLabel() {
+        self.buttonLabel.textColor          = self.buttonTextColor
+        
+        if (self.buttonAttributedText != nil) {
+            self.buttonLabel.attributedText     = self.buttonAttributedText
+            
+        } else {
+            self.buttonLabel.text               = self.buttonText
+            
+        }
+        
+    }
+    
     func setStyle(){
-        self.buttonLabel.text               = self.buttonText
+        configureButtonLabel()
+        ////
+        
         self.dragPointButtonLabel.text      = dragPointButtonText()
         self.dragPoint.frame.size.width     = self.dragPointWidth
         self.dragPoint.backgroundColor      = self.dragPointColor
         self.backgroundColor                = self.buttonColor
         self.imageView.image                = imageName
-        self.buttonLabel.textColor          = self.buttonTextColor
         self.dragPointButtonLabel.textColor = self.dragPointTextColor
         
         self.dragPoint.layer.cornerRadius   = buttonCornerRadius
@@ -243,10 +284,8 @@ import UIKit
             self.buttonLabel.adjustsFontSizeToFitWidth=true
             self.buttonLabel.minimumScaleFactor=0.6
             self.buttonLabel.textAlignment = .center
-            self.buttonLabel.text          = buttonText
-            self.buttonLabel.textColor     = UIColor.white
             self.buttonLabel.font          = self.buttonFont
-            self.buttonLabel.textColor     = self.buttonTextColor
+            configureButtonLabel()
             self.addSubview(self.buttonLabel)
             
             self.dragPointButtonLabel               = UILabel(frame: CGRect(x: dragPointWidth, y: 0, width: self.frame.size.width - (dragPointWidth * 2), height: self.frame.size.height))
