@@ -160,7 +160,13 @@ import UIKit
                 panGestureRecognizer?.isEnabled=true
                 ////
                 
-                self.dragPoint.frame.origin.x=dragPointDefaultOriginX() + dragPointWidthDifference;
+                if (self.invertSwipeDirection) {
+                    self.dragPoint.frame.origin.x=dragPointDefaultOriginX() - dragPointWidthDifference;
+                    
+                } else {
+                    self.dragPoint.frame.origin.x=dragPointDefaultOriginX() + dragPointWidthDifference;
+                    
+                }
                 
             }
             ////
@@ -174,8 +180,14 @@ import UIKit
             }
             
             func fixOffsets() {
-                self.dragPoint.frame.origin.x=self.dragPoint.frame.origin.x - dragPointWidthDifference;
-                self.imageView.frame.origin.x=self.imageView.frame.origin.x + dragPointWidthDifference;
+                if (self.invertSwipeDirection) {
+                    self.dragPoint.frame.origin.x=self.dragPoint.frame.origin.x + dragPointWidthDifference;
+                    
+                } else {
+                    self.dragPoint.frame.origin.x=self.dragPoint.frame.origin.x - dragPointWidthDifference;
+                    self.imageView.frame.origin.x=self.imageView.frame.origin.x + dragPointWidthDifference;
+                    
+                }
                 
             }
             ////
