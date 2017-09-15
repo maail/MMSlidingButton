@@ -123,6 +123,9 @@ import UIKit
     
     @objc @IBInspectable var optionalButtonUnlockingText: String   = ""
     
+    @objc @IBInspectable var invertSwipeDirection: Bool = false
+    
+    
     @objc private(set) var dragPoint            = UIView()
     @objc private(set) var buttonLabel          = UILabel()
     @objc private(set) var dragPointButtonLabel = UILabel()
@@ -278,7 +281,7 @@ import UIKit
         if !self.buttonText.isEmpty{
             var dragPointX : CGFloat = 0;
             
-            if offsetButtonTextByDragPointWidth
+            if (offsetButtonTextByDragPointWidth && !invertSwipeDirection)
             {
                 dragPointX=dragPointWidth;
                 
@@ -309,7 +312,14 @@ import UIKit
         self.bringSubview(toFront: self.dragPoint)
         
         if self.imageName != UIImage(){
-            self.imageView = UIImageView(frame: CGRect(x: self.frame.size.width - dragPointWidth, y: 0, width: self.dragPointWidth, height: self.frame.size.height))
+            var dragPointImageX : CGFloat = (self.frame.size.width - dragPointWidth);
+            
+            if (invertSwipeDirection) {
+                dragPointImageX=0;
+                
+            }
+            
+            self.imageView = UIImageView(frame: CGRect(x: dragPointImageX, y: 0, width: self.dragPointWidth, height: self.frame.size.height))
             self.imageView.autoresizingMask=[UIViewAutoresizing.flexibleHeight]
             
             self.imageView.contentMode = .center
@@ -328,7 +338,14 @@ import UIKit
     @objc func panDetected(sender: UIPanGestureRecognizer){
         var translatedPoint = sender.translation(in: self)
         translatedPoint     = CGPoint(x: translatedPoint.x, y: self.frame.size.height / 2)
-        sender.view?.frame.origin.x = min(0, max(dragPointDefaultOriginX(), dragPointDefaultOriginX()+translatedPoint.x));
+        
+        if (invertSwipeDirection) {
+            sender.view?.frame.origin.x = max(0, min(dragPointDefaultOriginX(), dragPointDefaultOriginX()+translatedPoint.x));
+            
+        } else {
+            sender.view?.frame.origin.x = min(0, max(dragPointDefaultOriginX(), dragPointDefaultOriginX()+translatedPoint.x));
+            
+        }
         ////
         
         let wasInsideUnlockRegion=isInsideUnlockRegion
@@ -341,8 +358,19 @@ import UIKit
                 velocityXToUse=0
                 
             }
+            ////
             
-            return (((translatedPoint.x + velocityXToUse) + self.dragPointWidth) > (self.frame.size.width - 60));
+            var thresholdXAmount : CGFloat = 60;
+            
+            if (invertSwipeDirection) {
+                return (self.frame.size.width+(translatedPoint.x + velocityXToUse)) < self.dragPointWidth + thresholdXAmount;
+                
+            } else {
+                thresholdXAmount = (self.frame.size.width - thresholdXAmount)
+                
+            }
+            
+            return (((translatedPoint.x + velocityXToUse) + self.dragPointWidth) > thresholdXAmount);
             
         }
         
@@ -409,7 +437,8 @@ import UIKit
     //lock button animation (SUCCESS)
     func unlock(){
         UIView.transition(with: self, duration: 0.2, options: .curveEaseOut, animations: {
-            self.dragPoint.frame = CGRect(x: self.frame.size.width - self.dragPoint.frame.size.width, y: 0, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
+            self.dragPoint.frame.origin.x=self.frame.size.width - self.dragPoint.frame.size.width;
+            
         }) { (Status) in
             if Status{
                 self.dragPointButtonLabel.text      = self.buttonUnlockedText
@@ -433,7 +462,8 @@ import UIKit
         }
         
         UIView.transition(with: self, duration: 0.2, options: .curveEaseOut, animations: {
-            self.dragPoint.frame = CGRect(x: self.dragPointDefaultOriginX(), y: 0, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
+            self.dragPoint.frame.origin.x=self.dragPointDefaultOriginX();
+            
         }) { (Status) in
             if Status{
                 self.dragPointButtonLabel.text      = self.dragPointButtonText()
