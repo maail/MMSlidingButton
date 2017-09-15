@@ -93,12 +93,13 @@ import UIKit
         }
     }
     
-    @objc @IBInspectable var dragPointTextColor: UIColor = UIColor.white {
+    @objc @IBInspectable var dragPointTextAlignment: NSTextAlignment = NSTextAlignment.center {
         didSet{
             setStyle()
         }
     }
-    @objc @IBInspectable var alignDragPointTextRight: Bool = false {
+    
+    @objc @IBInspectable var dragPointTextColor: UIColor = UIColor.white {
         didSet{
             setStyle()
         }
@@ -241,15 +242,21 @@ import UIKit
     }
     
     fileprivate func dragPointDefaultOriginX() -> CGFloat {
+        if (invertSwipeDirection)
+        {
+            return self.frame.size.width - dragPointWidth;
+            
+        }
+        
         return dragPointWidth - self.frame.size.width;
         
     }
     
     fileprivate func dragPointButtonLabelTextAlignment() -> NSTextAlignment {
-        var textAlignment = NSTextAlignment.center
+        var textAlignment = dragPointTextAlignment
         
-        if (!unlocked && alignDragPointTextRight) {
-            textAlignment = .right
+        if (unlocked) {
+            textAlignment = .center
             
         }
         
@@ -408,7 +415,7 @@ import UIKit
                 self.dragPointButtonLabel.text      = self.buttonUnlockedText
                 self.imageView.isHidden               = true
                 self.dragPoint.backgroundColor      = self.buttonUnlockedColor
-                self.dragPointButtonLabel.textAlignment = .center // NOTE: Ensures this is reset if "alignDragPointTextRight" is `true`
+                self.dragPointButtonLabel.textAlignment = self.dragPointButtonLabelTextAlignment()
                 self.dragPointButtonLabel.textColor = self.buttonUnlockedTextColor
                 self.delegate?.unlocked(slidingButton: self)
             }
@@ -436,7 +443,7 @@ import UIKit
                 self.unlocked                       = false
                 ////
                 
-                self.dragPointButtonLabel.textAlignment = self.dragPointButtonLabelTextAlignment() // NOTE: Ensures this is reset if "alignDragPointTextRight" is `true`, but must be done after "unlocked" is reset to `false`.
+                self.dragPointButtonLabel.textAlignment = self.dragPointButtonLabelTextAlignment() // NOTE: Ensures this is reset after unlock.
             }
         }
     }
