@@ -236,6 +236,8 @@ import UIKit
             self.buttonLabel               = UILabel(frame: CGRect(x: dragPointX, y: 0, width: self.frame.size.width - dragPointWidth, height: self.frame.size.height))
             self.buttonLabel.autoresizingMask=[UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
             
+            self.buttonLabel.adjustsFontSizeToFitWidth=true
+            self.buttonLabel.minimumScaleFactor=0.6
             self.buttonLabel.textAlignment = .center
             self.buttonLabel.text          = buttonText
             self.buttonLabel.textColor     = UIColor.white
@@ -244,6 +246,9 @@ import UIKit
             self.addSubview(self.buttonLabel)
             
             self.dragPointButtonLabel               = UILabel(frame: CGRect(x: dragPointWidth, y: 0, width: self.frame.size.width - (dragPointWidth * 2), height: self.frame.size.height))
+            
+            self.dragPointButtonLabel.adjustsFontSizeToFitWidth=true
+            self.dragPointButtonLabel.minimumScaleFactor=0.6
             self.dragPointButtonLabel.textAlignment = dragPointButtonLabelTextAlignment
             self.dragPointButtonLabel.text          = dragPointButtonText()
             self.dragPointButtonLabel.textColor     = UIColor.white
